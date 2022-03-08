@@ -1,0 +1,62 @@
+.headerContainer {
+  height: 5rem;
+  border-bottom: 1px solid var(--gray-800);
+}
+
+.headerContent {
+  max-width: 1120px;
+  height: 5rem;
+  margin: 0 auto; //0 auto faz alinhar ao centro automaticamente;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+
+  nav {
+    margin-left: 5rem;
+    height: 5rem;
+
+    a {
+      display: inline-block;
+      position: relative;
+      padding: 0 0.5rem;
+      height: 5rem;
+      line-height: 5rem; //como eu fiz o link ficar 100% com o 5rem, do tamanho do headercontent, se o line-height tiver também o mesmo tamanho, o texto do link fica ao centro;
+      color: var(--gray-300);
+
+      transition: 0.2s; // usado para a transição entre o a e o a:&hover abaixo.
+
+      & + a {
+        //isso signifa que todo <a> que tiver antes dele um outro <a>...
+        margin-left: 2rem;
+      }
+
+      &:hover {
+        //quando o usuário passar o mouse por cima do link..
+        color: var(--white);
+      }
+
+      &.active {
+        color: var(--white);
+        font-weight: bold;
+      }
+
+      //todo o link que estiver ativo
+      //o after faz com que adicione algo depois do active, por exemplo, seu eu colocar u content uma string "a' esse "a" vai aparecer na frente do lugar onde foi acionado
+      &.active::after {
+        content: "";
+        height: 3px;
+        border-radius: 3px 3px 0 0;
+        width: 100%;
+        position: absolute;
+        bottom: 1px;
+        left: 0;
+        background: var(--yellow-500);
+      }
+    }
+  }
+
+  button {
+    margin-left: auto; //quando coloca auto, ele tenta dar o máximo de marging que der.
+    //colocamos o margin left do button aqui e não diretamente nele (signing button) porque ele só tem que ter o comportamento de ir pra direita se ele estiver dentro do header. Ou seja, se colocasse direto no button, se eu mudasse ele de div, ele daria margim mesmo se não fosse necessário.
+  }
+}
