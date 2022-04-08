@@ -1,5 +1,5 @@
 import { query } from "faunadb";
-import NextAuth from "next-auth";
+import NextAuth, { Session } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import { fauna } from "../../../services/fauna";
 
@@ -39,6 +39,8 @@ export default NextAuth({
             ])
           )
         );
+        console.log("teste", userActiveSubscription);
+
         return { ...session, activeSubscription: userActiveSubscription };
       } catch {
         return {
